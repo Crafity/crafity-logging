@@ -1,0 +1,12 @@
+{
+  "appenders": [
+    {
+      "type": "file",
+      "filename": "logs/test.log",
+			"name": "cheese",
+      "maxLogSize": 1024,
+      "backups": 3,
+      "pollInterval": 15
+    }
+  ]
+}
