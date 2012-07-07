@@ -1,10 +1,12 @@
 /*jslint node: true*/
 console.log("Test is starting");
 
+console.log("module", module);
+
 (function createLoggerWithoutAppender() {
 	"use strict";
 
-	var logging = require('./logging')
+	var logging = require('./../logging')
 		, logger = logging.create();
 
 	logger.info("LOGGER:createLoggerWithoutParameters");
@@ -15,7 +17,7 @@ console.log("Test is starting");
 (function createLoggerWithConsoleAppender() {
 	"use strict";
 
-	var logging = require('./logging')
+	var logging = require('./../logging')
 		, logger = logging.create({
 			keep: false,
 			appenders: [
@@ -33,7 +35,7 @@ console.log("Test is starting");
 (function createLoggerWithFileAppender() {
 	"use strict";
 
-	var logging = require('./logging')
+	var logging = require('./../logging')
 		, logger = logging.create({
 			keep: false,
 			appenders: [
@@ -54,7 +56,7 @@ console.log("Test is starting");
 (function createLoggerWithoutAppender() {
 	"use strict";
 
-	var logging = require('./logging')
+	var logging = require('./../logging')
 		, logger = logging.create({keep: false});
 
 	logger.info("LOGGER:createLoggerWithoutAppender");

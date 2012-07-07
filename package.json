@@ -1,16 +1,59 @@
 {
 	"name": "crafity-logging",
 	"description": "Generic logging provider",
-	"version": "0.1.0",
+	"version": "0.0.1",
 	"author": "Bart Riemens <briemens@crafity.com>",
+	"homepage": "https://github.com/Crafity/crafity-logging#readme",
 	"keywords": ["crafity", "logging", "log4js", "provider", "configuration"],
-	"repository": "git://github.com/crafity/crafity-modules",
-	"main": "./logging.js",
+	"maintainers": [
+		{
+			"name": "Bart Riemens",
+			"email": "briemens@crafity.com",
+			"web": "http://crafity.com/about/bart"
+		},
+		{
+			"name": "Galina Slavova",
+			"email": "galina@crafity.com",
+			"web": "http://crafity.com/about/galina"
+		}
+	],
+	"contributors": [
+		{
+			"name": "Bart Riemens",
+			"email": "briemens@crafity.com",
+			"web": "http://crafity.com/about/bart"
+		},
+		{
+			"name": "Galina Slavova",
+			"email": "galina@crafity.com",
+			"web": "http://crafity.com/about/galina"
+		}
+	],
+	"main": "logging.js",
+	"directories": {
+		"test": "test"
+	},
+	"licenses": [
+		{
+			"type": "The MIT License",
+			"url": "https://github.com/Crafity/crafity-logging/blob/master/LICENSE"
+		}
+	],
+	"bugs": {
+		"url": "https://github.com/Crafity/crafity-logging/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Crafity/crafity-logging.git"
+	},
+	"dependencies": {
+		"log4js": "0.5.1"
+	},
 	"engines": {
-		"node": "> 0.4.x < 0.7.0"
+		"node": "*"
 	},
-	"scripts" : {
-		"prepublish" : "npm prune"
-	},
-	"dependencies": {}
+	"scripts": {
+		"prepublish": "npm prune",
+		"test": "./runtests"
+	}
 }
