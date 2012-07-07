@@ -1,3 +1,0 @@
-[submodule "node_modules/log4js-update"]
-	path = node_modules/log4js-update
-	url = https://github.com/Crafity/log4js-node.git

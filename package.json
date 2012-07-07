@@ -29,7 +29,7 @@
 			"web": "http://crafity.com/about/galina"
 		}
 	],
-	"main": "logging.js",
+	"main": "main.js",
 	"directories": {
 		"test": "test"
 	},
