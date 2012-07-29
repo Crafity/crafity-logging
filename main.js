@@ -11,8 +11,19 @@
  * Module dependencies.
  */
 
-var log4js = require('log4js')
+var log4js = require('crafity-log4js')
 	, fs = require('crafity-filesystem');
+
+
+/**
+ * Framework name.
+ */
+exports.fullname = 'crafity-logging';
+
+/**
+ * Framework version.
+ */
+exports.version = '0.0.2';
 
 /**
  * Create a new logger instance

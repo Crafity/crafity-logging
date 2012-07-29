@@ -1,4 +1,5 @@
 #!/usr/local/bin/node  
 
-process.chdir('./test/')
-require('./test/logging.test');
+//process.chdir('./test/')
+require('./test/package.test');
+//require('./test/logging.test');

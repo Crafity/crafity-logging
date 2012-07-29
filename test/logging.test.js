@@ -6,7 +6,7 @@ console.log("module", module);
 (function createLoggerWithoutAppender() {
 	"use strict";
 
-	var logging = require('./../logging')
+	var logging = require('./../main')
 		, logger = logging.create();
 
 	logger.info("LOGGER:createLoggerWithoutParameters");
@@ -17,7 +17,7 @@ console.log("module", module);
 (function createLoggerWithConsoleAppender() {
 	"use strict";
 
-	var logging = require('./../logging')
+	var logging = require('./../main')
 		, logger = logging.create({
 			keep: false,
 			appenders: [
@@ -35,7 +35,7 @@ console.log("module", module);
 (function createLoggerWithFileAppender() {
 	"use strict";
 
-	var logging = require('./../logging')
+	var logging = require('./../main')
 		, logger = logging.create({
 			keep: false,
 			appenders: [
@@ -56,7 +56,7 @@ console.log("module", module);
 (function createLoggerWithoutAppender() {
 	"use strict";
 
-	var logging = require('./../logging')
+	var logging = require('./../main')
 		, logger = logging.create({keep: false});
 
 	logger.info("LOGGER:createLoggerWithoutAppender");
