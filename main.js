@@ -8,14 +8,6 @@
  */
 
 /**
- * Module dependencies.
- */
-
-var log4js = require('crafity-log4js')
-	, fs = require('crafity-filesystem');
-
-
-/**
  * Framework name.
  */
 exports.fullname = 'crafity-logging';
@@ -23,7 +15,7 @@ exports.fullname = 'crafity-logging';
 /**
  * Framework version.
  */
-exports.version = '0.0.2';
+exports.version = '0.0.3';
 
 /**
  * Create a new logger instance
@@ -34,6 +26,13 @@ exports.version = '0.0.2';
  */
 exports.create = function (name, category, config) {
 	"use strict";
+
+	/**
+	 * Module dependencies.
+	 */
+	
+	var log4js = require('crafity-log4js')
+		, fs = require('crafity-filesystem');
 
 	/**
 	 * Organize the parameters
