@@ -47,7 +47,8 @@
 		"url": "https://github.com/Crafity/crafity-logging.git"
 	},
 	"dependencies": {
-		"crafity-log4js": "*"
+		"crafity-log4js": "*",
+		"crafity-jstest": "*"
 	},
 	"engines": {
 		"node": "*"
