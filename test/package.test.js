@@ -13,7 +13,7 @@
 var jstest = require('crafity-jstest')
 	, assert = jstest.assert
 	, context = jstest.createContext()
-	, fs = require('crafity-filesystem')
+	, fs = require('fs')
 	, main
 	;
 
