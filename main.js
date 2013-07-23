@@ -1,6 +1,8 @@
-/*jslint node:true */
+/*jslint node:true, white:true */
+"use strict";
+
 /*!
- * crafity-config - Generic configuration provider
+ * crafity-logging - Crafity's logging abstraction
  * Copyright(c) 2011-2012 Crafity
  * Copyright(c) 2011-2012 Bart Riemens
  * Copyright(c) 2011-2012 Galina Slavova
@@ -15,7 +17,7 @@ exports.fullname = 'crafity-logging';
 /**
  * Framework version.
  */
-exports.version = '0.0.3';
+exports.version = '0.1.0';
 
 /**
  * Create a new logger instance
@@ -25,59 +27,58 @@ exports.version = '0.0.3';
  * @return {*} A new logger instance
  */
 exports.create = function (name, category, config) {
-	"use strict";
 
-	/**
-	 * Module dependencies.
-	 */
-	
-	var log4js = require('crafity-log4js')
-		, fs = require('crafity-filesystem');
+  /**
+   * Module dependencies.
+   */
 
-	/**
-	 * Organize the parameters
-	 */
-	if (name === undefined && category === undefined && config === undefined) {
-		name = undefined;
-		category = undefined;
-		config = {};
-	} else if (typeof name === 'string' && typeof category === 'object' && config === undefined) {
-		config = category;
-		category = undefined;
-	} else if (typeof name === 'object' && category === undefined && config === undefined) {
-		config = name;
-		name = config.name;
-		category = config.category;
-	}
+  var log4js = require('crafity-log4js')
+    , fs = require('crafity-filesystem');
 
-	/**
-	 * Variable declatations
-	 */
-	var logger;
+  /**
+   * Organize the parameters
+   */
+  if (name === undefined && category === undefined && config === undefined) {
+    name = undefined;
+    category = undefined;
+    config = {};
+  } else if (typeof name === 'string' && typeof category === 'object' && config === undefined) {
+    config = category;
+    category = undefined;
+  } else if (typeof name === 'object' && category === undefined && config === undefined) {
+    config = name;
+    name = config.name;
+    category = config.category;
+  }
 
-	/**
-	 * Initialize the appenders
-	 */
-	config.appenders = (config.appenders || []).map(function (appender) {
-		appender.name = name || appender.name;
-		appender.category = category || appender.category;
-		appender.filename = appender.filename || 
-			(appender.path && fs.combine(process.cwd(), appender.path, appender.name + ".log"));
-		return appender;
-	});
+  /**
+   * Variable declatations
+   */
+  var logger;
 
-	/**
-	 * Configure log4js
-	 */
-	log4js.configure(config, { keep: config.keep !== false });
+  /**
+   * Initialize the appenders
+   */
+  config.appenders = (config.appenders || []).map(function (appender) {
+    appender.name = name || appender.name;
+    appender.category = category || appender.category;
+    appender.filename = appender.filename ||
+      (appender.path && fs.combine(process.cwd(), appender.path, appender.name + ".log"));
+    return appender;
+  });
 
-	/**
-	 * Get the logger and return it
-	 */
-	logger = log4js.getLogger(name);
-	logger.setLevel('ALL');
-	logger.name = name;
-	return logger;
+  /**
+   * Configure log4js
+   */
+  log4js.configure(config, { keep: config.keep !== false });
+
+  /**
+   * Get the logger and return it
+   */
+  logger = log4js.getLogger(name);
+  logger.setLevel('ALL');
+  logger.name = name;
+  return logger;
 };
 
 //(function () {

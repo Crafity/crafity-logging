@@ -1,10 +1,21 @@
-/*jslint node: true*/
+/*jslint node:true, white:true, stupid: true */
+"use strict";
+
+/*!
+ * logging.test.js - Test logging functionality 
+ * Copyright(c) 2011 Crafity
+ * Copyright(c) 2012 Galina Slavova
+ * Copyright(c) 2012 Bart Riemens
+ * MIT Licensed
+ */
+
+/**
+ * Test dependencies.
+ */
+
 console.log("Test is starting");
 
-console.log("module", module);
-
 (function createLoggerWithoutAppender() {
-	"use strict";
 
 	var logging = require('./../main')
 		, logger = logging.create();
@@ -15,7 +26,6 @@ console.log("module", module);
 }());
 
 (function createLoggerWithConsoleAppender() {
-	"use strict";
 
 	var logging = require('./../main')
 		, logger = logging.create({
@@ -33,7 +43,6 @@ console.log("module", module);
 }());
 
 (function createLoggerWithFileAppender() {
-	"use strict";
 
 	var logging = require('./../main')
 		, logger = logging.create({
@@ -42,7 +51,7 @@ console.log("module", module);
 				{
 					type: "file",
 					name: "unittest",
-					filename: "logs/test.log",
+					filename: "test/logs/test.log",
 					console: true
 				}
 			]
@@ -54,9 +63,8 @@ console.log("module", module);
 }());
 
 (function createLoggerWithoutAppender() {
-	"use strict";
 
-	var logging = require('./../main')
+	var logging = require('../main')
 		, logger = logging.create({keep: false});
 
 	logger.info("LOGGER:createLoggerWithoutAppender");
