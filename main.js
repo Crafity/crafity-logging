@@ -27,13 +27,13 @@ exports.fullname = 'crafity-logging';
 exports.version = '0.1.1';
 
 /**
- * Create a new logger instance
+ * Create a new logger instance.
+ *
  * @param name The name of the logger
  * @param category The category of the logger
- * @param config More configuration opetions
+ * @param config More configuration options
  * @return {*} A new logger instance
  */
-exports.create = function (name, category, config) {
 exports.create = function (name, category, config) { // 
 	/**
 	 * Module dependencies.
@@ -169,4 +169,5 @@ exports.create = function (name, category, config) { //
 
 	return logger;
 };
+
 
