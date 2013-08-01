@@ -1,11 +1,11 @@
-/*jslint node:true, white:true, stupid: true */
+/*jslint node: true, white: true, stupid: true */
 "use strict";
 
 /*!
- * logging.test.js - Test logging functionality 
- * Copyright(c) 2011 Crafity
- * Copyright(c) 2012 Galina Slavova
- * Copyright(c) 2012 Bart Riemens
+ * crafity-logging - Test logging functionality 
+ * Copyright(c) 2013 Crafity
+ * Copyright(c) 2013 Bart Riemens
+ * Copyright(c) 2013 Galina Slavova
  * MIT Licensed
  */
 
@@ -13,22 +13,37 @@
  * Test dependencies.
  */
 
-console.log("Test is starting");
+var jstest = require('crafity-jstest').createContext("Crafity Logging Tests")
+	, assert = jstest.assert
+	, logging = require('../main.js')
+	;
 
-(function createLoggerWithoutAppender() {
+/**
+ * Run the tests
+ */
 
-	var logging = require('./../main')
-		, logger = logging.create();
+jstest.run({
 
-	logger.info("LOGGER:createLoggerWithoutParameters");
-	console.log("CONSOLE:createLoggerWithoutParameters");
+	"Require the crafity logging module": function () {
+		assert.isFunction(logging.create, "Expected logger to be a function.");
+	},
 
-}());
+	"When creating a logger without options Then the default is returned.": function () {
+		var logger = logging.create();
 
-(function createLoggerWithConsoleAppender() {
+		assert.isDefined(logger, "Expected logger to be defined.");
+	},
 
-	var logging = require('./../main')
-		, logger = logging.create({
+	"When creating a logger without appender Then it has undefined name and default category.": function () {
+		var logger = logging.create({ keep: false });
+
+		console.log("\n\rNB This doesn't show in console!!! LALALALALALA  ... logger", logger);
+
+		assert.isDefined(logger, "Expected logger to be defined.");
+	},
+
+	"When creating a logger with a console appender Then ...TODO": function () {
+		var logger = logging.create({
 			keep: false,
 			appenders: [
 				{
@@ -37,37 +52,68 @@ console.log("Test is starting");
 				}
 			]});
 
-	logger.info("LOGGER:createLoggerWithConsoleAppender");
-	console.log("CONSOLE:createLoggerWithConsoleAppender");
+//		console.log("logger", logger);
+		
+		assert.isDefined(logger, "Expected logger to be defined.");
+	},
 
-}());
+//	"BEWARE of this function - it restarst all over again - When creating a logger with a file appender.": function () {
+//		// arrange + act
+//		var logger = logging.create({
+//			keep: false,
+//			appenders: [
+//				{
+//					type: "file",
+//					name: "unittest",
+//					filename: "test/logs/test.log",
+//					console: true
+//				}
+//			]
+//		});
+//
+//		console.log("logger", logger);
+//
+//		// assert
+//		assert.isDefined(logger, "Expected logger to be defined.");
+//	},
 
-(function createLoggerWithFileAppender() {
+	"When calling the http logger Then it will have method logRequestResponse.": function () {
+		// arrange + act
+		var logger = logging.create();
 
-	var logging = require('./../main')
-		, logger = logging.create({
-			keep: false,
-			appenders: [
-				{
-					type: "file",
-					name: "unittest",
-					filename: "test/logs/test.log",
-					console: true
-				}
-			]
-		});
+		// assert
+		assert.isFunction(logger.http.logRequestResponse, "Expected the http logger to have function logRequestResponse");
+	},
 
-	logger.info("LOGGER:createLoggerWithFileAppender");
-	console.log("CONSOLE:createLoggerWithFileAppender");
+	"When calling the Http logger Then the ansi colour formatting will be used.": function () {
+		// arrange
+		var logger = logging.create()
+			, req = {
+				client: {
+					remoteAddress: "127.0.0.1",
+					remotePort: "50543"
+				},
+				method: "GET",
+				headers: {
+					host: "static.crafity.dev",
+					referer: "http://crafity.dev/",
+					"user-agent": "user-agent"
+				},
+				url: "/about/clients?layout=false"
+			}
+			, res = {
+				statusCode: "200"
+			}
+			;
 
-}());
+		// act
+		logger.http.logRequestResponse(req, res, null);
 
-(function createLoggerWithoutAppender() {
+		// assert
+		assert.isDefined(logger.http, "Expected the http logger to be defined.");
+		assert.isFunction(logger.http.logRequestResponse, "Expected the http logger to have function logRequestResponse");
+	}
 
-	var logging = require('../main')
-		, logger = logging.create({keep: false});
+});
 
-	logger.info("LOGGER:createLoggerWithoutAppender");
-	console.log("CONSOLE:createLoggerWithoutAppender");
 
-}());
