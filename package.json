@@ -49,7 +49,8 @@
   "dependencies": {
     "crafity-log4js": "~0.1.0",
     "crafity-jstest": "~0.1.0",
-    "crafity-filesystem": "~0.1.0"
+    "crafity-filesystem": "~0.1.0",
+		"ansi": "~0.2.0"
   },
   "engines": {
     "node": "*"
