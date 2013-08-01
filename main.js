@@ -3,9 +3,9 @@
 
 /*!
  * crafity-logging - Crafity's logging abstraction
- * Copyright(c) 2011-2012 Crafity
- * Copyright(c) 2011-2012 Bart Riemens
- * Copyright(c) 2011-2012 Galina Slavova
+ * Copyright(c) 2011-2013 Crafity
+ * Copyright(c) 2011-2013 Bart Riemens
+ * Copyright(c) 2011-2013 Galina Slavova
  * MIT Licensed
  */
 
