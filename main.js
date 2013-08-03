@@ -80,16 +80,15 @@ exports.create = function (name, category, config) { //
 //	console.log("SEGA #1");
 	/**
 	 * Configure log4js, which is internally used.
-	 * 
+	 *
 	 * NB! This method may return a logger object, so the code below is then unreached.
 	 */
-	logger = log4js.configure(config, { keep: config.keep !== false });
+	log4js.configure(config, { keep: config.keep !== false });
 
-	
 //	console.log("SEGA #2");
+//	console.log("\n\n\n\n TEST UNREACHABLE when config = { keep: false } ..., log4js.logger = ", logger);
 
 //	console.log("\n\n\n\n TEST UNREACHABLE when config = { keep: false } .. SEGA!!!!!, log4js.logger = ", logger);
-	
 	/**
 	 * Get the logger and return it
 	 */
