@@ -88,7 +88,6 @@ exports.create = function (name, category, config) { //
 //	console.log("SEGA #2");
 //	console.log("\n\n\n\n TEST UNREACHABLE when config = { keep: false } ..., log4js.logger = ", logger);
 
-//	console.log("\n\n\n\n TEST UNREACHABLE when config = { keep: false } .. SEGA!!!!!, log4js.logger = ", logger);
 	/**
 	 * Get the logger and return it
 	 */
