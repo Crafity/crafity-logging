@@ -14,6 +14,7 @@
  */
 var ansi = require("ansi")
 	, ansiCursor = ansi(process.stdout)
+	, moment = require("moment")
 	;
 
 /**
