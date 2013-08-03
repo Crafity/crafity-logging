@@ -35,7 +35,7 @@ exports.version = '0.1.2';
  * @param config More configuration options
  * @return {*} A new logger instance
  */
-exports.create = function (name, category, config) { // 
+exports.create = function (name, category, config) {
 	/**
 	 * Module dependencies.
 	 */
