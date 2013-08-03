@@ -61,7 +61,6 @@ exports.create = function (name, category, config) { //
 		category = config.category;
 	}
 
-	
 	/**
 	 * Variable declarations
 	 */
@@ -111,7 +110,11 @@ exports.create = function (name, category, config) { //
 		};
 
 		ansiCursor
-			.hex(crafityColours.brown).write("Client:")
+			.hex(crafityColours.blue)
+			.write("\n"+ moment().format("YYYYMMDD, HH:mm:ss.SSS ZZ")) //source: http://momentjs.com/docs/
+			.fg.reset()
+
+			.hex(crafityColours.brown).write(" - Client:")
 			.fg.reset()
 			.hex(crafityColours.white)
 			.write(req.client.remoteAddress + ":" + req.client.remotePort)
@@ -126,15 +129,15 @@ exports.create = function (name, category, config) { //
 			.hex(crafityColours.brown).write(", Status: ")
 			.fg.reset()
 			.hex(crafityColours.orange)
-			.write(res.statusCode || "?")
+			.write(res.statusCode ? res.statusCode.toString() : "?")
 			.fg.reset()
-	
+
 			.hex(crafityColours.brown).write(", Url: ")
 			.fg.reset()
 			.hex(crafityColours.orange)
 			.write(req.url)
 			.fg.reset()
-			
+
 			.hex(crafityColours.brown).write(", Host: ")
 			.fg.reset()
 			.hex(crafityColours.white)
@@ -151,12 +154,6 @@ exports.create = function (name, category, config) { //
 			.fg.reset()
 			.hex(crafityColours.white)
 			.write(req.headers["user-agent"])
-			.fg.reset()
-
-			.hex(crafityColours.brown).write(", Date: ")
-			.fg.reset()
-			.hex(crafityColours.blue)
-			.write(new Date().toString())
 			.fg.reset()
 
 			.hex(crafityColours.red).write(err ? "\nERROR: " : "")
