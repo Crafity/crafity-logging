@@ -37,7 +37,7 @@ jstest.run({
 	"When creating a logger without appender Then it has undefined name and default category.": function () {
 		var logger = logging.create({ keep: false });
 
-		console.log("\n\rNB This doesn't show in console!!! LALALALALALA  ... logger", logger);
+		console.log("\n\rNB This doesn't show in console!! ... logger = ", logger);
 
 		assert.isDefined(logger, "Expected logger to be defined.");
 	},
@@ -52,8 +52,6 @@ jstest.run({
 				}
 			]});
 
-//		console.log("logger", logger);
-		
 		assert.isDefined(logger, "Expected logger to be defined.");
 	},
 
