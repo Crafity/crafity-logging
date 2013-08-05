@@ -63,7 +63,7 @@ jstest.run({
 
 	"When configuring a logger with a file appender Then return a logger with one file appender.": function (test) {
 		test.async(2000);
-		
+
 		// arrange
 		var path = "test/logs/test.log"
 			, messageToLog = "This test message is going to be logged to the file"
@@ -72,7 +72,12 @@ jstest.run({
 			;
 
 		// act
-		fs.unlinkSync(path);
+
+		try {
+			fs.unlinkSync(path);
+		} catch (ignore) {
+
+		}
 
 		logger = logging.create({
 			appenders: [
@@ -93,7 +98,7 @@ jstest.run({
 			// assert
 			assert.isTrue(logFileContents.indexOf(messageToLog) > -1, "Expected this log file to have same content with the logged content.");
 			assert.areEqual("file", Object.keys(logger.appenders)[0], "Expected this logger to a file appender.");
-			
+
 			console.log("WE ARE HERE...");
 
 			test.complete();
