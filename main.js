@@ -62,12 +62,12 @@ exports.create = function (name, category, config) {
 	}
 
 	/**
-	 * Variable declarations
+	 * Variable declarations.
 	 */
 	var logger;
 
 	/**
-	 * Initialize the appenders
+	 * Initialize the appenders.
 	 */
 	config.appenders = (config.appenders || []).map(function (appender) {
 		appender.name = name || appender.name;
@@ -77,23 +77,18 @@ exports.create = function (name, category, config) {
 		return appender;
 	});
 
-//	console.log("SEGA #1");
 	/**
 	 * Configure log4js, which is internally used.
-	 *
-	 * NB! This method may return a logger object, so the code below is then unreached.
 	 */
 	log4js.configure(config, { keep: config.keep !== false });
-
-//	console.log("SEGA #2");
-//	console.log("\n\n\n\n TEST UNREACHABLE when config = { keep: false } ..., log4js.logger = ", logger);
 
 	/**
 	 * Get the logger and return it
 	 */
 	logger = log4js.getLogger(name);
 	logger.setLevel('ALL');
-	logger.name = name;
+	logger.name = name ||  "";
+	logger.appenders = log4js.appenders;
 
 	logger.http = {};
 	logger.http.logRequestResponse = function (req, res, err) {
@@ -109,7 +104,7 @@ exports.create = function (name, category, config) {
 
 		ansiCursor
 			.hex(crafityColours.blue)
-			.write("\n"+ moment().format("YYYYMMDD, HH:mm:ss.SSS ZZ")) //source: http://momentjs.com/docs/
+			.write(moment().format("YYYYMMDD, HH:mm:ss.SSS ZZ")) //source: http://momentjs.com/docs/
 			.fg.reset()
 
 			.hex(crafityColours.brown).write(" - Client:")
@@ -152,6 +147,7 @@ exports.create = function (name, category, config) {
 			.fg.reset()
 			.hex(crafityColours.white)
 			.write(req.headers["user-agent"])
+			.write("\n")
 			.fg.reset()
 
 			.hex(crafityColours.red).write(err ? "\nERROR: " : "")
