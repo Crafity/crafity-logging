@@ -15,9 +15,17 @@ fi
 export runcommand='node'
 
 #
-# 
+# Check if code coverage needs and can be run
 #
-if [ "$COVER" != "" ]; then
+export ISTANBUL_LOCATION=`which istanbul`
+if [[ "$COVER" != "" && "$ISTANBUL_LOCATION" == "" ]]; then
+	echo "============================================"
+	echo " PLEASE INSTALL ISTANBUL FOR CODE COVERAGE"
+	echo ""
+	echo "    $ npm install -g istanbul"
+	echo "============================================"
+fi
+if [[ "$COVER" != "" && "$ISTANBUL_LOCATION" != "" ]]; then
 	# Run the tests with Istanbul instead of NodeJS
 	export runcommand='istanbul cover';
 	
@@ -34,7 +42,7 @@ export ErrorCode=$?
 # Copy the coverage data to the log directory
 #   - Only if coverage is enabled and there is a global coverage dir specified -
 #
-if [[ "$COVER" != "" && "$ISTANBUL_LOG" != "" && -d "coverage" ]]; then
+if [[ "$COVER" != "" && "$ISTANBUL_LOCATION" != "" && "$ISTANBUL_LOG" != "" && -d "coverage" ]]; then
 	export logDir="$ISTANBUL_LOG/$projectName"
 
 	# move the coverage info to the specified log dir
