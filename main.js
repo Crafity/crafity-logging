@@ -25,7 +25,7 @@ exports.fullname = 'crafity-logging';
 /**
  * Framework version.
  */
-exports.version = '0.1.4';
+exports.version = '0.1.5';
 
 /**
  * Create a new logger instance.
