@@ -151,9 +151,7 @@ exports.create = function (name, category, config) {
 			.fg.reset()
 
 			.hex(crafityColours.red).write(err ? "\nERROR: " : "")
-			.fg.reset()
-			.hex(crafityColours.orange)
-			.write(err ? (err.toString() + (err.stack ? err.stack + "\n" : "")) : "")
+			.write(err ? (err.toString() + (err.stack ? err.stack + "\n" : "\n")) : "\n")
 			.fg.reset()
 
 			.reset();
